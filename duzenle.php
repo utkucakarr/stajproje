@@ -1,10 +1,27 @@
 <html lang="tr">
 <head>
+    <!-- Required meta tags-->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Title Page-->
+    <title>Au Register Forms by Colorlib</title>
+
+    <!-- Icons font CSS-->
+    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="css/main1.css" rel="stylesheet" media="all">
 </head>
 
 <body>
@@ -41,48 +58,94 @@ else
 }
 }
 ?>
-    <div class="jumbotron text-center">
-        <h1>Bilgileri Güncelleme</h1>
-    </div>
-    <div class="container">
-        <section class="mb-3">
-            <a href="yenikayit.php" class="btn btn-primary">Yeni Kayıt</a>
-            <a href="bilgilerilistele.php" class="btn btn-warning">Listele</a>
-            <a href="index.php" class="btn btn-danger">Çıkış</a>
-        </section>
-        <form name="form1" method="POST" action="">
-            <div class="form-group">
-                <label for="ograd">Öğrenci Adı</label>
-                <input class="form-control" type="text" value="<?=$query['ograd']?>" name="ograd" id="ograd">
-            </div>
-            <div class="form-group">
-                <label for="ogrsoyad">Öğrenci Soyadı</label>
-                <input class="form-control" id="ogrsoyad" value="<?=$query['ogrsoyad']?>" type="text" name="ogrsoyad">
-            </div>
-            <div class="form-group">
-                    <label for="baslangic">Başlangıç Tarihi</label>
-                    <input class="form-control" value="<?=$query['baslangic']?>" type="date" name="baslangic" id="baslangic">
+<div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+                    <h2 class="title">Kayıt Güncelleme Formu</h2>
+                    <form method="POST" action="">
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Öğrenci Adı</label>
+                                    <input class="input--style-4" type="text" value="<?=$query['ograd']?>" name="ograd" id="ograd">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Öğrenci Soyadı</label>
+                                    <input class="input--style-4" type="text" name="ogrsoyad" id="ogrsoyad" value="<?=$query['ogrsoyad']?>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Başlangıç Tarihi</label>
+                                    <div class="input-group-icon">
+                                        <input class="input--style-4 js-datepicker" type="text" name="baslangic" value="<?=$query['baslangic']?>" id="baslangic">
+                                        <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                            <div class="input-group">
+                                    <label class="label">Bitiş Tarihi</label>
+                                    <div class="input-group-icon">
+                                        <input class="input--style-4 js-datepicker" value="<?=$query['bitis']?>" type="text" name="bitis" id="bitis">
+                                        <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Açıklama</label>
+                                    <input class="input--style-4" type="text" value="<?=$query['aciklama']?>" name="aciklama" id="aciklama">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                <div class="input-group">
+                                    <label class="label"></label>
+                                    <div class="p-t-10">
+   
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Çalışıcağı Alan</label>
+                            <div class="rs-select2 js-select-simple select--no-search">
+                                <select name="bolum" id="bolum">
+                                    <option value="Web Tabanlı" <?php echo ($query['bolum'] == 'Web Tabanlı')?'selected':''?> >Web Tabanlı</option>
+                                    <option value="Masaüstü Tabanlı" <?php echo ($query['bolum'] == 'Masaüstü Tabanlı')?'selected':''?>>Masaüstü Tabanlı</option>
+                                </select>
+                                <div class="select-dropdown"></div>
+                            </div>
+                        </div>
+                        <div class="p-t-15">
+                            <button class="btn btn--radius-2 btn--blue" type="submit" name="kaydet" value="kaydet">Kaydet</button>
+                            <a href="bilgilerilistele.php" class="btn btn--green" style="text-decoration: none">Listele</a>
+                            <a href="index.php" class="btn btn--red" style="background-color:red; text-decoration: none">Çıkış</a>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label for="bitis">Bitiş Tarihi</label>
-                    <input class="form-control" value="<?=$query['bitis']?>" type="date" name="bitis" id="bitis">
-                </div>
-            <div class="form-group">
-                <label for="bolum">Çalışıcağı Alan</label>
-                <select id="bolum" class="form-control" name="bolum">
-                    <option value="Web Tabanlı"  <?php echo ($query['bolum'] == 'Web Tabanlı')?'selected':''?>>Web Tabanlı</option>
-                    <option value="Masaüstü Tabanlı" <?php echo ($query['bolum'] == 'Masaüstü Tabanlı')?'selected':''?>>Masaüstü Tabanlı</option>
-                </select>
             </div>
-            <div class="form-group">
-                <label for="aciklama">Açıklama</label>
-                <textarea rows="3" id="aciklama" class="form-control" name="aciklama"><?=$query['aciklama']?></textarea>
-            </div>  
-            <div class="form-group">
-                <button type="submit" name="duzenle" class="btn btn-success" value="guncelle">Güncelle</button>
-            </div>
-        </form>
+        </div>
     </div>
+    
+        <!-- Jquery JS-->
+        <script src="vendor/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="vendor/select2/select2.min.js"></script>
+    <script src="vendor/datepicker/moment.min.js"></script>
+    <script src="vendor/datepicker/daterangepicker.js"></script>
+
+    <!-- Main JS-->
+    <script src="js/global.js"></script>
 
 </body>
 
