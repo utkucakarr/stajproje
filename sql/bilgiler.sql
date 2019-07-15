@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: localhost
--- Üretim Zamanı: 12 Tem 2019, 00:27:11
+-- Üretim Zamanı: 14 Tem 2019, 18:31:30
 -- Sunucu sürümü: 5.7.17-log
 -- PHP Sürümü: 5.6.30
 
@@ -42,7 +42,7 @@ CREATE TABLE `tbl_ogrbilgiler` (
 --
 
 INSERT INTO `tbl_ogrbilgiler` (`id`, `ograd`, `ogrsoyad`, `baslangic`, `bitis`, `cinsiyet`, `aciklama`, `bolum`) VALUES
-(57, 'utku', 'çakar', '2019-07-13', '2019-07-17', 'Erkek', '', 'Masaüstü Tabanlı');
+(79, 'utku', 'çakar', '02/07/2019', '15/07/2019', 'Erkek', 'Stajyer', 'Web Tabanlı');
 
 -- --------------------------------------------------------
 
@@ -54,15 +54,18 @@ CREATE TABLE `yonetici` (
   `id` int(11) NOT NULL,
   `kadi` varchar(60) NOT NULL,
   `adsoyad` varchar(60) NOT NULL,
-  `sifre` varchar(60) NOT NULL
+  `sifre` varchar(60) NOT NULL,
+  `yetki` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Tablo döküm verisi `yonetici`
 --
 
-INSERT INTO `yonetici` (`id`, `kadi`, `adsoyad`, `sifre`) VALUES
-(1, 'utku', 'Utku Çakar', '123456');
+INSERT INTO `yonetici` (`id`, `kadi`, `adsoyad`, `sifre`, `yetki`) VALUES
+(1, 'utku', 'Utku Çakar', '123456', '0'),
+(2, 'umut', 'Umut Çakar', '123456', '1'),
+(3, 'mehmet', 'mehmet dağ', '1234567', '1');
 
 --
 -- Dökümü yapılmış tablolar için indeksler
@@ -88,12 +91,12 @@ ALTER TABLE `yonetici`
 -- Tablo için AUTO_INCREMENT değeri `tbl_ogrbilgiler`
 --
 ALTER TABLE `tbl_ogrbilgiler`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 --
 -- Tablo için AUTO_INCREMENT değeri `yonetici`
 --
 ALTER TABLE `yonetici`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

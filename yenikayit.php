@@ -1,3 +1,6 @@
+<?php
+session_start()
+?>
 <html lang="tr">
 <head>
     <!-- Required meta tags-->
@@ -8,7 +11,7 @@
     <meta name="keywords" content="Colorlib Templates">
 
     <!-- Title Page-->
-    <title>Au Register Forms by Colorlib</title>
+    <title>Yeni Kayıt Formu</title>
 
     <!-- Icons font CSS-->
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
@@ -18,13 +21,43 @@
 
     <!-- Vendor CSS-->
     <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+    <link href="vendor/daterangepicker/daterangepicker.css" rel="stylesheet" media="all">
 
     <!-- Main CSS-->
     <link href="css/main1.css" rel="stylesheet" media="all">
 </head>
+<script>
+function dogrula(){
+    var degerad = document.formisim.ograd.value;
+    var degersoyad = document.formisim.ogrsoyad.value;
+    var degerbaslangic = document.formisim.baslangic.value;
+    var degerbitis = document.formisim.bitis.value;
+    if(degerad == ""){
+        window.alert("Öğrenci adı alanı boş bırakılamaz.");
+        return false;
+    }
+    else if(degersoyad == ""){
+        window.alert("Öğrenci soyisim alanı boş bırakılamaz.");
+        return false;
+    }
+    else if(degerbaslangic == ""){
+        window.alert("Başlangıç tarih alanı boş bırakılamaz.");
+        return false;
+    }
+    else if(degerbitis == ""){
+        window.alert("Bitiş tarih alanı boş bırakılamaz.");
+        return false;
+    }
+}
+</script>
 <body>
 <?php
+if(empty($_SESSION['Oturum_Kadi']))
+{
+    header("Location: index.php");
+}
+else
+{
 $mesaj1 ="<script>alert('Kayıt İşlemi Başarılı');window.location='yenikayit.php'</script>";
 $mesaj2 ="<script>alert('Kayıt İşlemi Başarısız');window.location='yenikayit.php'</script>";
 if(isset($_GET['islem']))
@@ -42,6 +75,7 @@ if(isset($_GET['islem']))
     }
 
 }
+}
 ?>
 <body>
 <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
@@ -49,36 +83,36 @@ if(isset($_GET['islem']))
             <div class="card card-4">
                 <div class="card-body">
                     <h2 class="title">Yeni Kayıt Formu</h2>
-                    <form method="POST" action="?islem=ekle">
+                    <form method="POST" name="formisim" onsubmit="return dogrula()" action="?islem=ekle">
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Öğrenci Adı</label>
-                                    <input class="input--style-4" type="text" name="ograd" id="ograd" required placeholder="Öğrencinin Adını">
+                                    <input class="input--style-4" type="text" name="ograd" required id="ograd" placeholder="Öğrencinin Adını">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Öğrenci Soyadı</label>
-                                    <input class="input--style-4" type="text" name="ogrsoyad" id="ogrsoyad" required name="ogrsoyad"placeholder="Öğrencinin Soyadı">
+                                    <input class="input--style-4" type="text" name="ogrsoyad" required id="ogrsoyad" name="ogrsoyad"placeholder="Öğrencinin Soyadı">
                                 </div>
                             </div>
                         </div>
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Başlangıç Tarihi</label>
+                                    <label for="baslangic" class="label">Başlangıç Tarihi</label>
                                     <div class="input-group-icon">
-                                        <input class="input--style-4 js-datepicker" type="text" name="baslangic" id="baslangic">
+                                        <input class="input--style-4 js-datepicker" required type="text" name="baslangic" id="baslangic">
                                         <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-2">
                             <div class="input-group">
-                                    <label class="label">Bitiş Tarihi</label>
+                                    <label for="bitis" class="label">Bitiş Tarihi</label>
                                     <div class="input-group-icon">
-                                        <input class="input--style-4 js-datepicker" type="text" name="bitis" id="bitis">
+                                        <input class="input--style-4 js-datepicker" required type="text" name="bitis" id="bitis">
                                         <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                                     </div>
                                 </div>
@@ -130,11 +164,12 @@ if(isset($_GET['islem']))
     </div>
     
         <!-- Jquery JS-->
-        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
     <!-- Vendor JS-->
     <script src="vendor/select2/select2.min.js"></script>
-    <script src="vendor/datepicker/moment.min.js"></script>
-    <script src="vendor/datepicker/daterangepicker.js"></script>
+    <script src="vendor/daterangepicker/moment.min.js"></script>
+    <script src="vendor/daterangepicker/daterangepicker.js"></script>
+    <script src="utku.js"></script>
 
     <!-- Main JS-->
     <script src="js/global.js"></script>

@@ -1,4 +1,11 @@
 <?php
+session_start();
+if(empty($_SESSION['Oturum_Kadi']))
+{
+    header("Location: index.php");
+}
+else
+{
 include 'baglanti.php';
 $id = $_GET['sil'];
 $mesaj1 ="<script>alert('Kayıt Silme Başarılı');window.location='bilgilerilistele.php'</script>";
@@ -14,7 +21,9 @@ if($delete){
 }
 else{
     echo $mesaj2;
-}}
+}
+}
+}
 ?>
 <html lang="tr">
 <head>
@@ -30,12 +39,13 @@ else{
     </div>
     <div class="container">
         <section class="mb-3">
-            <a href="yenikayit.php" class="btn btn-primary">Yeni Kayıt</a>
-            <a href="index.php" class="btn btn-danger">Çıkış</a>
+        <a href="yenikayit.php" class="btn btn-primary">Yeni Kayıt</a>
+        <a onclick="return yonlendir()" href="logout.php" class="btn btn-danger">Çıkış</a>
         </section>
+        <?php ?>
         <table class="table table-bordered table-striped">
-            <thead>
-                <tr class="table-info">
+            <thead class="thead-dark">
+                <tr >
                     <th scope="col">Id</th>
                     <th scope="col">Öğrenci Adı</th>
                     <th scope="col">Öğrenci Soyadı</th>
@@ -44,7 +54,13 @@ else{
                     <th scope="col">Bitiş Tarihi</th>
                     <th scope="col">Cinsiyet</th>
                     <th scope="col">Açıklama</th>
-                    <th colspan=2>İşlem</th>
+                    <?php
+            if($_SESSION['Oturum_Yetki'] == "0")
+            {?>
+                <th colspan=2>İşlem</th>
+            <?php 
+            }
+             ?>
                 </tr>
             </thead>
             <tbody>
@@ -68,10 +84,16 @@ else{
                 <td><?=$row['bitis']?></td>
                 <td><?=$row['cinsiyet']?></td>
                 <td><?=$row['aciklama']?></td>
-                <td>
-                    <a href="bilgilerilistele.php?sil=<?=$row['id']?>"><button class="btn btn btn-danger">Sil</button></a>
-                    <a href="duzenle.php?duzenle=<?=$row['id']?>"><button class="ml-2 btn btn btn-success">Düzenle</button></a>
-                </td>
+                <?php
+            if($_SESSION['Oturum_Yetki'] == "0")
+            {?>
+                 <td>
+                 <a href="bilgilerilistele.php?sil=<?=$row['id']?>"><button onclick="return sil()" class="btn btn btn-danger">Sil</button></a>
+                 <a href="duzenle.php?duzenle=<?=$row['id']?>"><button class="ml-2 btn btn btn-success">Düzenle</button></a>
+                 </td>
+            <?php 
+            }
+             ?>
                 </tr>
                 <?php
                 }}
@@ -79,5 +101,6 @@ else{
             </tbody>
         </table>
     </div>
+    <script src="utku.js"></script>
 </body>
 </html>

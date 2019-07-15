@@ -1,7 +1,10 @@
+<?php
+	session_start()
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login V16</title>
+	<title>Yönetici Giriş Sayfası</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -37,7 +40,8 @@ $mesaj1 ="<script>alert('Kullanıcı adı veya şifre hatalı')</script>";
         $query->execute(array($_POST['kadi'],$_POST['sifre']));
         if($data=$query->fetch())
         {
-            $_SESSION['Oturum_Kadi']=$data['Kadi'];
+			$_SESSION['Oturum_Kadi']=$data['kadi'];
+			$_SESSION['Oturum_Yetki']=$data['yetki'];
             header("Location: bilgilerilistele.php");
         }
         else
